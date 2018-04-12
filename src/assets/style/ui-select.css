@@ -1,0 +1,177 @@
+input.form-control.ui-select-search {
+    width: 100% !important;
+    border-radius: 0px;
+    height: 35px;
+}
+
+.ui-select-container.ui-select-bootstrap.dropdown {
+    width: 100%;
+}
+
+.dropdown-menu {
+    border-radius: 0px;
+}
+
+.ui-select-bootstrap .ui-select-choices-row > a {
+    display: block;
+    padding: 3px 12px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.ui-select-container .btn.btn-xs.btn-link.pull-right {
+    margin-right: 0px !important;
+    padding: 6px 8px !important;
+    margin: 0px;
+    line-height: 0px;
+    min-height: 0px;
+}
+
+.ui-select-container .glyphicon.glyphicon-remove {
+    color: #94908E;
+    top: -3px;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active > a {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #66afe9;
+}
+
+.ui-select-bootstrap .ui-select-toggle > .caret {
+    display: none;
+}
+
+.ui-select-bootstrap .ui-select-choices-row > a {
+    display: block;
+    padding: 3px 12px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-align: left;
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading:after {
+    z-index: 10;
+    border: solid rgba(9, 62, 78, .2);
+    border-top-color: #66afe9;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-animation: spin 1s infinite linear;
+    -moz-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
+    content: "";
+    position: absolute;
+    top: 17px;
+    width: 30px;
+    height: 30px;
+    margin: -15px 3px 0px 0px;
+    border-width: 5px;
+    position: absolute;
+    right: 2px;
+    background-color: white;
+}
+
+.ui-select-multiple.ui-select-bootstrap {
+    min-height: 34px !important;
+    padding: 3px 3px 0 3px;
+}
+
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    height: 1.666666em;
+    margin-bottom: 3px;
+    margin-left: 4px;
+    font-size: 15px;
+    min-width: 10px;
+    width: auto !important;
+    display: inline-block;
+}
+
+.input-group .loading:after {
+    margin: 3px 4px 0px 0px;
+}
+
+.btn.btn-default.form-control.ui-select-toggle {
+    float: left;
+}
+
+.input-group-ui-select {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.input-group-ui-select > div.ui-select-col {
+    padding: 0px;
+    width: 80%;
+}
+
+.input-group-ui-select > div.ui-select-col input.form-control.ui-select-search {
+    height: 35px;
+}
+
+.input-group-ui-select > div.info-col {
+    padding: 0px;
+    width: 20%;
+    min-width: 30px;
+}
+
+.input-group-ui-select > div.info-col .input-group-addon {
+    height: 100% !important;
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+    display: inline-block;
+    cursor: pointer;
+    border-right: 1px solid #ccc;
+    border-left: none;
+    text-align: center;
+}
+
+.ui-select-container.ui-select-multiple.ui-select-bootstrap.dropdown {
+    width: 100%;
+}
+
+.ui-select-container.ui-select-multiple.ui-select-bootstrap.dropdown span.ui-select-match {
+    width: 100%;
+}

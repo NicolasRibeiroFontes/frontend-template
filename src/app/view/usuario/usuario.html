@@ -1,0 +1,118 @@
+<div class="default" id="cadastrarUsuario">
+
+    <div class="row well">
+        <div class="row">
+            <div class="col-xs-12">
+                <legend>Cadastro Usuário</legend>
+            </div>
+        </div>
+        <softgrid cols="vm.configuracoesTabela.colunas" actions="vm.configuracoesTabela.opcoes" data="vm.usuarios" sg-controls="vm.configuracoesTabela.controles"> </softgrid>
+        <div class="no-rows" ng-show="!vm.usuarios.length">Não há itens para exibir.</div>
+    </div>
+
+    <div class="modal fade" id="modalDadosUsuario" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog" style="max-width:90%; width:90%">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h4 class="modal-title" ng-show="vm.novoUsuario">Adicionar Usuário</h4>
+                    <h4 class="modal-title" ng-show="!vm.novoUsuario">Editar Usuário</h4>
+
+                </div>
+
+                <form name="form" novalidate ng-submit="vm.salvar()">
+
+                    <div class="modal-body">
+
+                        <div class="form-group row">
+
+                            <div class="col-xs-12 col-md-3 form-group">
+                                <label class="hidden_effect" ng-class="{'visible_effect' : vm.cpf}">CPF</label>
+                                <div class="input-group">
+                                    <input class="form-control" ng-model="vm.cpf" placeholder="CPF" mask="999.999.999-99" ng-change="vm.verificaBuscaCPF()" ng-disabled="!vm.novoUsuario">
+                                    <span class="input-group-btn">
+                                        <button id="verificarCPF" ng-disabled="!vm.cpf || !vm.novoUsuario" class="{{vm.buscarCPF ? 'btn btn-warning m-progress' : 'btn btn-warning'}}"
+                                            type="button" ng-click="vm.obterUsuarioPorCPF()">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-xs-12 col-md-4">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.nome}">Nome</label>
+                                <input class="form-control" ng-model="vm.nome" placeholder="Nome" ng-disabled="vm.bloquearCampos" required>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.email}">Email</label>
+                                <input class="form-control" ng-model="vm.email" placeholder="Email" ng-disabled="vm.bloquearCampos" required>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.cargo}">Cargo</label>
+                                <input class="form-control" ng-model="vm.cargo" placeholder="Cargo" ng-disabled="vm.bloquearCampos" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-xs-12 col-md-4">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.telefoneResidencial}">Telefone Residencial</label>
+                                <input class="form-control" ng-model="vm.telefoneResidencial" placeholder="Telefone Residencial" mask="(99)9999-9999" ng-disabled="vm.bloquearCampos">
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.telefoneCelular}">Telefone Celular</label>
+                                <input class="form-control" ng-model="vm.telefoneCelular" placeholder="Telefone Celular" mask="(99)99999-9999" ng-disabled="vm.bloquearCampos">
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.telefoneComercial}">Telefone Comercial</label>
+                                <input class="form-control" ng-model="vm.telefoneComercial" placeholder="Telefone Comercial" mask="(99)9999-9999" ng-disabled="vm.bloquearCampos">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-xs-12 col-md-3">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.login}">Login</label>
+                                <input class="form-control" ng-model="vm.login" placeholder="Login" ng-disabled="vm.bloquearCampos || vm.existeEzAuth" required>
+                            </div>
+                            <div class="col-xs-12 col-md-3" ng-if="!vm.existeEzAuth">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.senha}">Senha</label>
+                                <input class="form-control" type="password" ng-model="vm.senha" placeholder="Senha" ng-disabled="vm.bloquearCampos || vm.existeEzAuth"
+                                    required>
+                            </div>
+                            <div class="col-xs-12 col-md-3" ng-if="!vm.existeEzAuth">
+                                <label class="hidden_effect" ng-class="{'visible_effect':vm.confirmarSenha}">Confirmar Senha
+                                </label>
+                                <input class="form-control" type="password" ng-model="vm.confirmarSenha" placeholder="Confirmar Senha" ng-disabled="vm.bloquearCampos || vm.existeEzAuth"
+                                    required>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-loading"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="fecharModalDadosUsuario" type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Fechar
+                        </button>
+                        <button type="submit" ng-disabled="!form.$valid" class="btn btn-success pull-right" style="margin-left: 10px">
+                            <i style="color: white;" class="fa fa-check"></i> Salvar
+                        </button>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

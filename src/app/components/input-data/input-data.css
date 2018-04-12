@@ -1,0 +1,47 @@
+.dctv-input-data {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+input[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+::-webkit-datetime-edit {
+
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+
+}
+
+::-webkit-datetime-edit-text {
+
+}
+
+::-webkit-datetime-edit-month-field {
+
+}
+
+::-webkit-datetime-edit-day-field {
+
+}
+
+::-webkit-datetime-edit-year-field {
+
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+    float: right;
+}
+
+::-webkit-calendar-picker-indicator {
+
+}

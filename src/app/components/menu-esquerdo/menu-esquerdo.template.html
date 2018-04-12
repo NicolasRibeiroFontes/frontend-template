@@ -1,0 +1,57 @@
+<div id="left-panel" class="">
+    <div class="menu-nav" id="menuleft">
+
+        <div class="nav-side-menu">
+            <div class="menu-list">
+
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>{{$root.dadosUsuario.nome}}</p>
+                        <span>{{$root.dadosUsuario.email}}</span>
+                    </div>
+
+                </div>
+                <div class="user-actions">
+                    <div class="pull-left">
+                        <a class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#modalTrocarSenha" >
+                            <i class="fa fa-lock"></i>
+                            Trocar Senha
+                        </a>
+                    </div>
+                    <div class="pull-right">
+                        <a class="btn btn-danger btn-sm" ng-click="sair()">
+                            <i class="fa fa-power-off"></i>
+                            Sair
+                        </a>
+                    </div>
+                </div>
+
+                <ul id="menu-content" class="menu-content">
+
+                    <li ng-repeat-start="modulo in modulos"
+                        ng-class="{'active': verificarModuloAtivo(modulo)}">
+                        <a ui-sref="{{ modulo.state ? modulo.state : angular.noop() }}">
+                            <i class="fa {{modulo.icone}}"></i>
+                            <span ng-class="{'arrow': modulo.modulosFilho.length > 0}">{{modulo.descricao}}</span>
+                        </a>
+
+                    </li>
+                    <ul  ng-repeat-end class="sub-menu collapse" id="{{modulo.descricao}}">
+                        <li ng-repeat="moduloFilho in modulo.modulosFilho"
+                            ui-sref-active="active">
+                            <a ui-sref="{{moduloFilho.state}}">
+                                <i class="fa {{moduloFilho.icone}}"></i>
+                                <span>{{moduloFilho.descricao + $rootScope.stateName}}</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

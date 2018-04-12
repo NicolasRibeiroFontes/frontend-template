@@ -1,0 +1,11 @@
+<div class="dctv-input-data input-group row-eq-height">
+	<input type="date" class="form-control" style="width:100%;" ng-model="html5DataInicio" ng-change="alterarData(html5DataInicio,(eRange()?1:0))"
+		   min="{{obterRangeMin()}}" max="{{obterRangeMax()}}" required="true">
+	</span>
+	<span class="input-group-addon" ng-if="eRange()" style="padding: 9px 9px;width:auto;"> á </span>
+	<input type="date" class="form-control" style="width:100%;" ng-if="eRange()" ng-model="html5DataFim" ng-change="alterarData(html5DataFim,2)"
+		   min="obterDataFormatada(dataMinima)" max="obterDataFormatada(dataMaxima)" required="true">
+	<span ng-if="eExibirIcone()&&!eRange()" class="input-group-addon" style="width:auto;padding-top: 8px;">
+        <i class="fa fa-calendar"></i>
+    </span>
+</div>

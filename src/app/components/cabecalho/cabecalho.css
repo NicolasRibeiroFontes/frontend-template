@@ -1,0 +1,185 @@
+#head {
+    background-color: #fff;
+    display: block;
+    border-bottom: 1px solid #DED9D9;
+    width:calc(100% + 15px);
+}
+
+#head #noticia-panel {
+    background-color: #66afe9;
+    margin: 0;
+    min-height: 10px;
+}
+
+#head #top-panel {
+    margin-right: 0;
+    margin-left: 0;
+    border-right: 1px solid #DED9D9;
+    border-left: 1px solid #DED9D9;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 55px;
+}
+
+#head #top-panel .menu.children-left-align {
+    justify-content: flex-start;
+}
+
+#head #top-panel .menu {
+    justify-content: center;
+}
+
+@media (min-width: 1200px){
+    .row-eq-height {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+
+/*#region menutoogle */
+
+#main-menu-shortuck {
+    display: inline-block;
+    padding: 5px 0 0 20px;
+}
+
+.menu-toggle {
+    width: 30px;
+    right: 25px;
+    cursor: pointer;
+}
+
+.menu-active .menu-toggle .one {
+    transform: rotate(47deg) translate(6px, 7px);
+    -ms-transform: rotate(47deg) translate(6px, 7px);
+    -webkit-transform: rotate(47deg) translate(6px, 7px);
+}
+
+.menu-active .menu-toggle .two {
+    opacity: 0;
+}
+
+.menu-active .menu-toggle .three {
+    transform: rotate(-45deg) translate(8px, -10px);
+    -ms-transform: rotate(-45deg) translate(8px, -10px);
+    -webkit-transform: rotate(-45deg) translate(8px, -10px);
+}
+
+.menu-left-hidden {
+    visibility: hidden;
+}
+
+.menu-left {
+    visibility: none;
+}
+
+.one, .two,.three {
+    width: 100%;
+    height: 4px;
+    background: #34495e;
+    margin: 6.5px auto;
+    backface-visibility: hidden;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.menu > h3 {
+    color: #999C9E;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.menu-nav > nav ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.menu-nav > nav ul li {
+    padding-left: 25px;
+    padding-right: 5px;
+}
+
+.menu-nav > nav ul li:hover {
+    list-style: none;
+    text-decoration: none;
+    background-color: #f1f1f1;
+}
+
+.menu-nav > nav ul li a {
+    display: block;
+    padding: 14px;
+    text-decoration: none;
+    color: #65655D;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.menu-nav > nav ul li {
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.menu-nav > nav ul li.active a {
+    color: white;
+}
+
+.menu-nav > nav ul li a:hover {
+    list-style: none;
+    text-decoration: none;
+}
+
+.menu-bottom {
+    -moz-transition: all .25s linear;
+    -ms-transition: all .25s linear;
+    transition: all .25s linear;
+    min-height: 55px;
+}
+
+.menu-toggle {
+    float: left;
+    -moz-transition: all .25s linear;
+    -ms-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+/*
+    Essa é a posição original do HEADER e do MAIN
+*/
+header, .main {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    -ms-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+
+.menu-nav > div > nav {
+    -webkit-transform: translateX(-320px);
+    -moz-transform: translateX(-320px);
+    -ms-transform: translateX(-320px);
+    transform: translateX(-320px);
+    -webkit-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    -ms-transition: all .25s linear;
+    transition: all .25s linear;
+    position: fixed;
+    top: 95px;
+    left: 0;
+    z-index: 1;
+    width: auto;
+    height: 100%;
+    background: #FFFFFF;
+    border-right: 2px solid #eee;
+    overflow-y: scroll;
+    z-index: 1060;
+}
