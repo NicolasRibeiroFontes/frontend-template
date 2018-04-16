@@ -746,13 +746,11 @@ a:focus {
 }
 
 .default {
-    padding-bottom: 100px;
     margin: 30px auto;
     width: 95%;
 }
 
 .default>div {
-    margin-top: 10px;
     margin-bottom: 10px;
 }
 

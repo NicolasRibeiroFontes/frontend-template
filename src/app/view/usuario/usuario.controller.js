@@ -7,26 +7,46 @@
     UsuarioController.$injector = ['$state', '$log', 'usuarioDataService', 'listaUsuarios', 'loadingService', 'toastrService'];
 
     /** @ngInject */
-    function UsuarioController($state, $log, usuarioDataService, listaUsuarios,  loadingService, toastrService) {
+    function UsuarioController($state, $log, usuarioDataService, listaUsuarios, loadingService, toastrService) {
 
         var vm = this;
+        vm.divExibicao = 'lista';
 
         vm.usuarios = listaUsuarios;
-        vm.bloquearCampos = true;
-        vm.existeEzAuth = true;
-
-        vm.obterUsuarios = _obterUsuarios;
-        vm.obterUsuarioPorCPF = _obterUsuarioPorCPF;
-        vm.salvar = _salvar;
-        vm.voltar = _voltar;
-        vm.verificaBuscaCPF = _verificaBuscaCPF;
-
         vm.configuracoesTabela = _configurarTabela();
+        vm.salvar = _salvar;
+        vm.cancelar = _cancelar;
 
-        function _configurarTabela(){
+        function _buscarDetalhesUsuario(usuario) {
+            vm.usuario = usuario;
+            vm.divExibicao = 'cadastro';
+        }
+
+        function _excluirUsuario(usuario) {
+            loadingService.show();
+            usuarioDataService.excluir(usuario._id)
+                .then(sucesso)
+                .catch(erro);
+            function sucesso(retorno) {
+                if (retorno.status) {
+                    toastrService.sucesso('Exclusão Usuário', 'Usuário excluído com sucesso!');
+                    _obterUsuarios();
+                }else {
+                    toastrService.erro('Exclusão Usuário', 'Erro ao excluir usuário');
+                }
+                loadingService.hide();
+            };
+            function erro(retorno) {
+                toastrService.erro('Exclusão Usuário', 'Erro ao excluir usuário');
+                loadingService.hide();
+            }
+        }
+
+        function _configurarTabela() {
             return {
                 colunas: [
                     { type: "action", title: "Exibir", callback: _buscarDetalhesUsuario, icon: "fa-search", width: "50px" },
+                    { type: "action", title: "Excluir", callback: _excluirUsuario, icon: "fa-trash", width: "50px" },
                     { title: "Nome", item: function (item) { return item.nome }, align: "center" },
                     { title: "E-mail", item: function (item) { return item.email }, align: "center" }
                 ],
@@ -38,53 +58,38 @@
             }
         }
 
-        function _buscarDetalhesUsuario(){
-            
-        }
-
-        function _verificaBuscaCPF() {
-
-            if (vm.novoUsuario)
-                removerPontosHifens(vm.cpf).length === 11 ? vm.obterUsuarioPorCPF() : angular.noop();
-
-        }
-
-        function _voltar() {
-            $state.forceReload();
+        function _cancelar() {
+            vm.usuario = {};
+            vm.divExibicao = 'lista';
         }
 
         function _salvar() {
 
             loadingService.show();
 
-            var _usuario = {};
+            if (vm.usuario._id) {
+                usuarioDataService.editar(vm.usuario)
+                    .then(sucesso)
+                    .catch(erro);
+            } else {
+                usuarioDataService.salvar(vm.usuario)
+                    .then(sucesso)
+                    .catch(erro);
+            }
 
-            _usuario.id = vm.usuarioID;
-            _usuario.nome = vm.nome;
-            _usuario.email = vm.email;
-            _usuario.cargo = vm.cargo;
-            _usuario.telefoneComercial = vm.telefoneComercial;
-            _usuario.telefoneResidencial = vm.telefoneResidencial;
-            _usuario.telefoneCelular = vm.telefoneCelular;
-            _usuario.ativo = vm.ativo;
-            _usuario.login = vm.login;
-            _usuario.senha = vm.senha;
-            _usuario.confirmarSenha = vm.confirmarSenha;
-            _usuario.cpf = removerPontosHifens(vm.cpf);
-            _usuario.perfilID = vm.perfil.id;
-            _usuario.existeEzAuth = vm.existeEzAuth;
 
-            usuarioDataService.salvar(_usuario)
-                .then(sucesso)
-                .catch(erro);
 
-            function sucesso() {
+            function sucesso(retorno) {
+                if (retorno.status) {
+                    toastrService.sucesso('Sucesso no cadastro de Usuário', retorno.mensagem);
+                    _obterUsuarios();
+                    _cancelar();
+                } else {
+                    toastrService.erro('Erro no cadastro de Usuário', retorno.mensagem);
+                }
 
-                angular.element('#modalDadosUsuario').modal('hide');
+
                 loadingService.hide();
-                toastrService.sucesso('Dados salvos com sucesso!', 'Cadastro de Usuário');
-                vm.obterUsuarios();
-
             }
 
             function erro(error) {
@@ -187,7 +192,7 @@
 
             loadingService.show();
             reiniciarDados();
-            angular.element('#modalDadosUsuario').modal({backdrop: 'static', keyboard: false});
+            angular.element('#modalDadosUsuario').modal({ backdrop: 'static', keyboard: false });
             loadingService.hide();
 
         }
@@ -210,11 +215,11 @@
             vm.login = dadosUsuario.login;
             vm.existeEzAuth = dadosUsuario.existeEzAuth;
 
-            vm.perfil = _.find(vm.perfis, {'id': dadosUsuario.perfilID});
+            vm.perfil = _.find(vm.perfis, { 'id': dadosUsuario.perfilID });
 
             vm.bloquearCampos = false;
 
-            angular.element('#modalDadosUsuario').modal({backdrop: 'static', keyboard: false});
+            angular.element('#modalDadosUsuario').modal({ backdrop: 'static', keyboard: false });
             loadingService.hide();
 
         }
